@@ -33,7 +33,7 @@ echo -e "$Purple$CHARACTER_2: ¡Hora de instalar algo genial!"
 echo -e "$Green$CHARACTER_3: ¡Vamos, que esto será rápido y fácil!$Reset"
 sleep 2
 
-print_ascii "MaycolAI"
+print_ascii "Noisy Boy"
 echo -e "$PurpleAjusta la Escala de la Pantalla para una mejor experiencia...$Reset"
 echo -e "$GreenHecho con amor por SoyMaycol$Reset"
 echo -e "$Yellow$CHARACTER_1 Te pondré Musica ^^"
@@ -59,7 +59,7 @@ pip install yt-dlp
 # Clonando repositorio  
 print_ascii "Clonando Repo"  
 echo -e "$Green$CHARACTER_3: Descargando MaycolAI desde los cielos digitales...$Reset"
-git clone https://github.com/SoySapo6/MaycolAI 
+git clone https://github.com/SoySapo6/Noisy-Boy.git
 echo -e "$Yellow$CHARACTER_1: Estamos en medio de la Instalación ♪$Reset"
 
 cd MaycolAI
@@ -86,11 +86,11 @@ kill $MUSIC_PID
 
 # Mensaje final  
 clear  
-print_ascii "SoyMaycol"
+print_ascii "Noisy Boy"
 jp2a --color Hanako.png
 echo -e "$Purple Gracias por usar MaycolAI, eres lo máximo <3$Reset"
 echo -e "$Green Para iniciar el bot, ejecuta manualmente el siguiente comando:$Reset"
 echo -e "$Cyan"
-echo "cd MaycolAI && npm start"
+echo "cd Noisy-Boy && npm start"
 echo -e "$Reset"
 read -p "Presiona Enter para salir..."
