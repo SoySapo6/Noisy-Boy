@@ -63,7 +63,7 @@ git clone https://github.com/SoySapo6/Noisy-Boy.git
 echo -e "$Yellow$CHARACTER_1: Estamos en medio de la Instalación ♪$Reset"
 
 cd MaycolAI
-curl -s -o Hanako.png https://files.catbox.moe/aml84a.png
+curl -s -o Hanako.png https://files.catbox.moe/9njxpf.jpeg
 
 # Instalando módulos del proyecto  
 print_ascii "Dependencias"  
@@ -88,7 +88,7 @@ kill $MUSIC_PID
 clear  
 print_ascii "Noisy Boy"
 jp2a --color Hanako.png
-echo -e "$Purple Gracias por usar MaycolAI, eres lo máximo <3$Reset"
+echo -e "$Purple Gracias por usar Noisy Boy, eres lo máximo <3$Reset"
 echo -e "$Green Para iniciar el bot, ejecuta manualmente el siguiente comando:$Reset"
 echo -e "$Cyan"
 echo "cd Noisy-Boy && npm start"
