@@ -2,10 +2,6 @@ const fs = require('fs');
 const path = require('path');
 const QRCode = require('qrcode');
 const baileys = require('baileys');
-const pino = require('pino');
-
-// Usamos index.js de la raíz
-const manejarComando = require("../index");
 
 const {
   makeWASocket,
@@ -14,6 +10,12 @@ const {
   fetchLatestBaileysVersion,
   makeCacheableSignalKeyStore
 } = baileys;
+
+const manejarComando = require("../index.js");
+
+function removeAccentsAndSpecialCharacters(text) {
+  return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-zA-Z0-9]/g, "");
+}
 
 module.exports = async (conn, from, args) => {
   try {
@@ -33,20 +35,18 @@ module.exports = async (conn, from, args) => {
 
       const { state, saveCreds } = await useMultiFileAuthState(sessionPath);
       const { version } = await fetchLatestBaileysVersion();
-      const logger = pino({ level: "silent" });
-
       const sock = makeWASocket({
         version,
-        logger,
+        logger: baileys.logger({ level: "silent" }),
         auth: {
           creds: state.creds,
-          keys: makeCacheableSignalKeyStore(state.keys, logger)
+          keys: makeCacheableSignalKeyStore(state.keys)
         },
         printQRInTerminal: false,
         browser: ['SoyMaycol', 'Chrome', '1.0']
       });
 
-      // Manejamos los comandos con index.js
+      // Ahora los mensajes pasan a index.js
       sock.ev.on('messages.upsert', async ({ messages }) => {
         const m = messages[0];
         if (!m || !m.message || m.key.fromMe) return;
@@ -59,16 +59,21 @@ module.exports = async (conn, from, args) => {
         else if (tipo === 'imageMessage' && m.message.imageMessage.caption) texto = m.message.imageMessage.caption;
         else if (tipo === 'videoMessage' && m.message.videoMessage.caption) texto = m.message.videoMessage.caption;
 
-        texto = texto.toLowerCase().trim();
+        texto = texto.trim();
         const jid = m.key.remoteJid;
 
-        // Mandamos el mensaje a index.js para que lo maneje con su switch
+        // Prefijo
+        const prefix = ['.', '/', '#', '!', '?'].find(p => texto.startsWith(p));
+        if (!prefix) return;
+
+        const args = texto.slice(1).trim().split(/ +/);
+        const command = args.shift().toLowerCase();
+        const cleanCommand = removeAccentsAndSpecialCharacters(command);
+
         try {
-          await manejarComando(sock, jid, texto.split(" "), texto);
-        } catch (e) {
-          await sock.sendMessage(jid, {
-            text: `❌ Error al ejecutar el comando.\n\n${e.message}`
-          });
+          await manejarComando(sock, jid, cleanCommand, args);
+        } catch (err) {
+          await sock.sendMessage(jid, { text: "❌ Ocurrió un error al ejecutar el comando." });
         }
       });
 
