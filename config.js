@@ -4,25 +4,25 @@ const path = require("path");
 exports.PREFIX = ".";
 
 // Emoji do bot (mude se preferir).
-exports.BOT_EMOJI = "🤓";
+exports.BOT_EMOJI = "🤖";
 
 // Nome do bot (mude se preferir).
-exports.BOT_NAME = "𝕄𝕒𝕪𝕔𝕠𝕝𝔸𝕀";
+exports.BOT_NAME = "Noisy Boy";
 
 // Número do bot. Coloque o número do bot
 // (apenas números, exatamente como está no WhatsApp).
-exports.BOT_NUMBER = "51921826291";
+exports.BOT_NUMBER = "50492896509";
 
 // Número do dono do bot. Coloque o número do dono do bot
 // (apenas números, exatamente como está no WhatsApp).
-exports.OWNER_NUMBER = "51921826291";
+exports.OWNER_NUMBER = "50492896509";
 
 // Aca tu Nombre Osea nombre del Owner
 
-exports.OWNER_NAME = "SoyMaycol";
+exports.OWNER_NAME = "Andrex";
 
 //Dejalo sin nada si hiciste el Proyecto solo
-exports.CREDITS = "";
+exports.CREDITS = "SoyMaycol";
 
 // Diretório de arquivos de mídia.
 exports.ASSETS_DIR = path.resolve(__dirname, "assets");
@@ -63,15 +63,15 @@ exports.APIKEY_SPEEDHOSTING = "aa18unlhqu"
 exports.APIKEY_MAYCOLAI = "b2f0e299-69d9-484f-9e79-c47d7a90eaa1"
 
 //Imagen en URL Del Bot
-exports.URLIMAGE_SoyMaycol = "https://i.postimg.cc/ZYFfHWmc/images-6.jpg";
+exports.URLIMAGE_SoyMaycol = "https://files.catbox.moe/9njxpf.jpeg";
 
 //Descripción del Bot
-exports.DESCRIPTION_SoyMaycol = "No olvides seguirme <3";
+exports.DESCRIPTION_SoyMaycol = "Noisy Boy Esta Contigo 🔥";
 
 //Canal de WhatsApp
-exports.CHANNEL_SoyMaycol = "https://whatsapp.com/channel/0029VayXJte65yD6LQGiRB0R";
+exports.CHANNEL_SoyMaycol = "https://www.instagram.com/andrex_t111/";
 
 //Tu pagina web o Relacionada contigo
 exports.WEB_SoyMaycol = "https://soymaycol.vercel.app/";
 
-exports.MENUIMAGE_SoyMaycol = "https://files.catbox.moe/pj18me.jpg"
+exports.MENUIMAGE_SoyMaycol = "https://files.catbox.moe/avaphw.jpg"
