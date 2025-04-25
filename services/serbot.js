@@ -36,7 +36,7 @@ module.exports = async (conn, from, args) => {
 
       const { state, saveCreds } = await useMultiFileAuthState(sessionPath);
       const { version } = await fetchLatestBaileysVersion();
-      const logger = pino({ level: "silent" }); // Usamos pino directamente
+      const logger = pino({ level: "silent" });
 
       const sock = makeWASocket({
         version,
@@ -74,8 +74,10 @@ module.exports = async (conn, from, args) => {
         const cleanCommand = removeAccentsAndSpecialCharacters(command);
 
         try {
+          // Asegurarse de que la función manejarComando está recibiendo correctamente el socket y el jid.
           await manejarComando(sock, jid, cleanCommand, args);
         } catch (err) {
+          console.error("Error al ejecutar comando:", err);
           await sock.sendMessage(jid, { text: "❌ Ocurrió un error al ejecutar el comando." });
         }
       });
@@ -141,6 +143,7 @@ module.exports = async (conn, from, args) => {
     await startSubbot();
 
   } catch (e) {
+    console.error("Error al conectar subbot:", e);
     await conn.sendMessage(from, {
       text: `❌ Error al conectar subbot: ${e.message || e}`
     });
