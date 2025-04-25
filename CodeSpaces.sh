@@ -27,7 +27,7 @@ echo -e "$Purple$CHARACTER_2: ¡Hora de instalar algo genial!"
 echo -e "$Green$CHARACTER_3: ¡Vamos, que esto será rápido y fácil!$Reset"
 sleep 2
 
-print_ascii "MaycolAI"
+print_ascii "Noisy Boy"
 echo -e "$PurpleAjusta la Escala del Terminal para una mejor experiencia...$Reset"
 echo -e "$GreenHecho con amor por SoyMaycol$Reset"
 echo -e "$Yellow$CHARACTER_1: Reproduciendo música (simulada)...$Reset"
@@ -48,7 +48,7 @@ npm install -g yarn
 pip install yt-dlp
 
 # Suponiendo que ya estás dentro del repo
-curl -s -o Hanako.jpg https://files.catbox.moe/ncr2te.jpg
+curl -s -o Hanako.jpg https://files.catbox.moe/9njxpf.jpeg
 
 # Instalando módulos del proyecto
 print_ascii "Dependencias"
@@ -66,9 +66,9 @@ mkdir temp
 
 # Mensaje final
 clear
-print_ascii "SoyMaycol"
+print_ascii "Noisy Boy"
 jp2a --color Hanako.jpg
-echo -e "$Purple Gracias por usar MaycolAI, eres lo máximo <3$Reset"
+echo -e "$Purple Gracias por usar Noisy Boy, eres lo máximo <3$Reset"
 echo -e "$Green Para iniciar el bot, ejecuta manualmente:$Reset"
 echo -e "$Cyan"
 echo "npm start"
