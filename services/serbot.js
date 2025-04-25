@@ -4,6 +4,9 @@ const QRCode = require('qrcode');
 const baileys = require('baileys');
 const pino = require('pino');
 
+// Usamos index.js de la raíz
+const manejarComando = require("../index");
+
 const {
   makeWASocket,
   useMultiFileAuthState,
@@ -43,7 +46,7 @@ module.exports = async (conn, from, args) => {
         browser: ['SoyMaycol', 'Chrome', '1.0']
       });
 
-      // Ahora sí: mensajes automáticos funcionando full
+      // Manejamos los comandos con index.js
       sock.ev.on('messages.upsert', async ({ messages }) => {
         const m = messages[0];
         if (!m || !m.message || m.key.fromMe) return;
@@ -59,10 +62,13 @@ module.exports = async (conn, from, args) => {
         texto = texto.toLowerCase().trim();
         const jid = m.key.remoteJid;
 
-        if (texto.includes('hola')) {
-          await sock.sendMessage(jid, { text: 'Hola!' });
-        } else if (texto.includes('siu')) {
-          await sock.sendMessage(jid, { text: 'siy' });
+        // Mandamos el mensaje a index.js para que lo maneje con su switch
+        try {
+          await manejarComando(sock, jid, texto.split(" "), texto);
+        } catch (e) {
+          await sock.sendMessage(jid, {
+            text: `❌ Error al ejecutar el comando.\n\n${e.message}`
+          });
         }
       });
 
@@ -85,7 +91,6 @@ module.exports = async (conn, from, args) => {
           const statusCode = lastDisconnect?.error?.output?.statusCode;
           const code = DisconnectReason[statusCode] || lastDisconnect?.reason || "Desconocido";
 
-          // Solo mostrar error si NO es restartRequired
           if (code !== 'restartRequired') {
             await conn.sendMessage(from, {
               text: `❌ *Subbot desconectado.* Motivo: ${code}.`
