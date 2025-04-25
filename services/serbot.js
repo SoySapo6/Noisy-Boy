@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const QRCode = require('qrcode');
 const baileys = require('baileys');
+const pino = require('pino');
 
 const {
   makeWASocket,
@@ -35,9 +36,11 @@ module.exports = async (conn, from, args) => {
 
       const { state, saveCreds } = await useMultiFileAuthState(sessionPath);
       const { version } = await fetchLatestBaileysVersion();
+      const logger = pino({ level: "silent" }); // Usamos pino directamente
+
       const sock = makeWASocket({
         version,
-        logger: baileys.logger({ level: "silent" }),
+        logger,
         auth: {
           creds: state.creds,
           keys: makeCacheableSignalKeyStore(state.keys)
