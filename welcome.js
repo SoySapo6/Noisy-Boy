@@ -21,7 +21,7 @@ if (data.action === "add") { try { const numero = onlyNumbers(userJid);
   const text3 = `Member ${numero}`;
 
   // Crear URL de Popcat con los textos personalizados
-  const popcatUrl = `https://api.popcat.xyz/welcomecard?background=https://cdn.popcat.xyz/welcome-bg.png&text1=${encodeURIComponent(text1)}&text2=${encodeURIComponent(text2)}&text3=${encodeURIComponent(text3)}&avatar=${encodeURIComponent(avatarUrl)}`;
+  const popcatUrl = `https://files.catbox.moe/wp2eb9.jpg`;
 
   const response = await axios.get(popcatUrl, {
     responseType: "arraybuffer",
@@ -32,19 +32,6 @@ if (data.action === "add") { try { const numero = onlyNumbers(userJid);
 
   await lite.sendMessage(from, {
     image: buffer,
-    caption: `┏━━━━━━━━━━━✦  
-┃✧  ʜᴏʟᴀ ~ @${numero}
-┃✧  ᴛᴇ ᴅᴀ ʟᴀ ʙɪᴇɴᴠᴇɴɪᴅᴀ…  
-┃✧  ᴇʟ ʙᴏᴛ ᴅᴇ ʜᴀɴᴀᴋᴏ-ᴋᴜɴ  
-┗━━━━━━━━━━━✦
-
-✿ ¿𝗤𝘂𝗲́ 𝘁𝗶𝗲𝗻𝗲 𝗲𝘀𝘁𝗲 𝗕𝗼𝘁? ✿
-
-➤ ✧ ᴛᴇᴍᴀ́ᴛɪᴄᴀ ᴅᴇ ᴀɴɪᴍᴇ 〜★  
-➤ ✧ ᴄʀᴇᴀᴅᴏʀ ᴄᴏɴ ꜱᴛʏʟᴇ ✦  
-➤ ✧ ᴍɪɴɪ ᴊᴜᴇɢᴏꜱ, ᴍᴀꜱᴄᴏᴛᴀꜱ, ʏ ᴍᴀ́ꜱ!
-
-ꜱɪᴇɴᴛᴇᴛᴇ ᴄᴏ́ᴍᴏᴅ@ ʏ ᴅɪꜱꜰʀᴜᴛᴀ ~  
-☁️ ᴍᴀʏᴄᴏʟᴀɪ & ʜᴀɴᴀᴋᴏ ᴛᴇ ᴄᴜɪᴅᴀɴ ☁️`, mentions: [userJid], }); } catch (error) { errorLog("Alguien se unió al grupo y no pude enviar el mensaje de bienvenida."); console.error(error.message); } } }
+    caption: `Hola! ${numero} De parte de los Admins 🤖🔥`, mentions: [userJid], }); } catch (error) { errorLog("Alguien se unió al grupo y no pude enviar el mensaje de bienvenida."); console.error(error.message); } } }
 
 module.exports = { welcome };
