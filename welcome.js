@@ -16,12 +16,12 @@ if (data.action === "add") { try { const numero = onlyNumbers(userJid);
   }
 
   // Personalizar texto del banner
-  const text1 = "MaycolAI";
+  const text1 = "NoisyBoy";
   const text2 = "De Parte de SoyMaycol ^^";
   const text3 = `Member ${numero}`;
 
   // Crear URL de Popcat con los textos personalizados
-  const popcatUrl = `https://files.catbox.moe/wp2eb9.jpg`;
+  const popcatUrl = `https://api.popcat.xyz/welcomecard?background=https://files.catbox.moe/qhvfhy.png&text1=${encodeURIComponent(text1)}&text2=${encodeURIComponent(text2)}&text3=${encodeURIComponent(text3)}&avatar=${encodeURIComponent(avatarUrl)}`;
 
   const response = await axios.get(popcatUrl, {
     responseType: "arraybuffer",
@@ -32,6 +32,19 @@ if (data.action === "add") { try { const numero = onlyNumbers(userJid);
 
   await lite.sendMessage(from, {
     image: buffer,
-    caption: `Hola! ${numero} De parte de los Admins 🤖🔥`, mentions: [userJid], }); } catch (error) { errorLog("Alguien se unió al grupo y no pude enviar el mensaje de bienvenida."); console.error(error.message); } } }
+    caption: `┏━━━━━━━━━━━✦  
+┃✧  ʜᴏʟᴀ ~ @${numero}
+┃✧  ᴛᴇ ᴅᴀ ʟᴀ ʙɪᴇɴᴠᴇɴɪᴅᴀ…  
+┃✧  ᴇʟ ʙᴏᴛ ᴅᴇ Noisy Boy
+┗━━━━━━━━━━━✦
+
+✿ ¿𝗤𝘂𝗲́ 𝘁𝗶𝗲𝗻𝗲 𝗲𝘀𝘁𝗲 𝗕𝗼𝘁? ✿
+
+➤ ✧ ᴛᴇᴍᴀ́ᴛɪᴄᴀ ᴅᴇ ᴀɴɪᴍᴇ/Pelea 〜★  
+➤ ✧ ᴄʀᴇᴀᴅᴏʀ ᴄᴏɴ ꜱᴛʏʟᴇ ✦  
+➤ ✧ ᴍɪɴɪ ᴊᴜᴇɢᴏꜱ, ᴍᴀꜱᴄᴏᴛᴀꜱ, ʏ ᴍᴀ́ꜱ!
+
+ꜱɪᴇɴᴛᴇᴛᴇ ᴄᴏ́ᴍᴏᴅ@ ʏ ᴅɪꜱꜰʀᴜᴛᴀ ~  
+☁️ ᴍᴀʏᴄᴏʟᴀɪ & Noisy ᴛᴇ ᴄᴜɪᴅᴀɴ ☁️`, mentions: [userJid], }); } catch (error) { errorLog("Alguien se unió al grupo y no pude enviar el mensaje de bienvenida."); console.error(error.message); } } }
 
 module.exports = { welcome };
